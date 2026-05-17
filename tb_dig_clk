@@ -1,0 +1,19 @@
+module tbd;
+reg clk,rst;
+wire [3:0]m0,h0;
+wire [2:0]m1;wire [1:0]h1;
+d_clock uut(clk,rst,m0,h0,m1,h1);
+initial begin
+clk=0;
+forever #10 clk=~clk;
+end
+initial begin
+rst=1;#50;
+rst=0;#2000000000;
+$finish;
+end
+initial begin
+$monitor("Time=%0t | h1=%0d h0=%0d : m1=%0d m0=%0d",
+$time, h1, h0, m1, m0);
+end
+endmodule
